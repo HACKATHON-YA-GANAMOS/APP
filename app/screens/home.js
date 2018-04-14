@@ -8,7 +8,7 @@ export default class Start extends Component {
       <View style={styles.background}>
         <Image source={require('../assets/images/logo.png')}
             style={styles.image}/>
-        <Text style={styles.text}>El control de tu plantas en un solo click</Text>
+        <Text style={styles.text}>Guess my food</Text>
         <OwnButton text={"Iniciar"} green={true} navigation={this.props.navigation} link={'Home'}/>
       </View>
     );
