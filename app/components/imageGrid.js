@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, Image, Text, View, TouchableOpacity, Dimensions } from 'react-native';
 import GridView from 'react-native-super-grid';
+//we have to change this to acces cache memory
 import images from '../assets/images/box/index'
 
 const windowWidth = Dimensions.get('window').width;
