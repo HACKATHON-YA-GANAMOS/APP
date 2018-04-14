@@ -2,14 +2,14 @@ import OwnButton from '../components/button';
 import React, { Component } from 'react';
 import { StyleSheet, Image, Text, View } from 'react-native';
 
-export default class Start extends Component {
+export default class Home extends Component {
   render() {
     return (
       <View style={styles.background}>
         <Image source={require('../assets/images/logo.png')}
             style={styles.image}/>
-        <Text style={styles.text}>Guess my food</Text>
-        <OwnButton text={"Iniciar"} green={true} navigation={this.props.navigation} link={'Home'}/>
+        <Text style={styles.text}>Guess my FOOD!</Text>
+        <OwnButton text={"Start"} green={true} navigation={this.props.navigation} link={'SavedFood'}/>
       </View>
     );
   }

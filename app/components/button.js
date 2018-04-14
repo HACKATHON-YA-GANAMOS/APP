@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {StyleSheet, Text, TouchableOpacity } from 'react-native';
-
+import {thirdColor} from './styles';
 
 export default class OwnButton extends Component {
   pressFunction(navigation, link){
@@ -15,11 +15,11 @@ export default class OwnButton extends Component {
     let backgroundColor;
     let color;
     if (this.props.green) {
-      backgroundColor = '#159c8c';
+      backgroundColor = thirdColor;
       color = '#ffffff';
     } else {
       backgroundColor = '#ffffff';
-      color = '#159c8c';
+      color = thirdColor;
     }
     const button = { backgroundColor: backgroundColor, height: height, width: width };
     const text = { color: color };
