@@ -82,7 +82,7 @@ export default class CameraW extends Component {
 
   takePicture = async function() {
     if (this.camera) {
-      this.camera.takePictureAsync().then(data => {
+      this.camera.takePictureAsync({quality: 2}).then(data => {
         FileSystem.moveAsync({
           from: data.uri,
           to: `${FileSystem.documentDirectory}photos/Photo_${this.state.photoId}.jpg`,

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Image, StyleSheet, View, TouchableOpacity, Text, ScrollView } from 'react-native';
-import { FileSystem, FaceDetector } from 'expo';
-
+import { FileSystem } from 'expo';
+import OwnButton from '../components/button';
 const pictureSize = 150;
 
 export default class GalleryScreen extends React.Component {
@@ -9,6 +9,7 @@ export default class GalleryScreen extends React.Component {
   state = {
     images: {},
     photos: [],
+    uploaded: true,
   };
 
   _mounted = false;
@@ -18,6 +19,26 @@ export default class GalleryScreen extends React.Component {
     FileSystem.readDirectoryAsync(FileSystem.documentDirectory + 'photos').then(photos => {
       if (this._mounted) {
         this.setState({ photos });
+        const urlo = `${FileSystem.documentDirectory}photos/${photos[0]}`;
+        let data = new FormData();
+        data.append('picture', {uri: urlo, name: 'selfie.jpg', type: 'image/jpg'});
+        const config = {
+          method: 'POST',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'multipart/form-data;',
+            'image': 'holi',
+          },
+          body: data,
+        };
+        fetch("http://172.20.3.81:5002/recognition", config)
+          .then((responseData) => {
+            console.log(responseData);
+          })
+          .catch(err => {
+            console.log(err);
+          });
+
       }
     });
   }
@@ -54,9 +75,38 @@ export default class GalleryScreen extends React.Component {
     }
   };
 
+  async uploadfunction(){
+    if (this._mounted){
+      console.log(this.state);
+      const urlo = `${FileSystem.documentDirectory}photos/${this.state.photos[0]}`;
+      let data = new FormData();
+      data.append('picture', {uri: urlo, name: 'selfie.jpg', type: 'image/jpg'});
+      const config = {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'multipart/form-data;',
+          'image': 'holi',
+        },
+        body: data,
+      };
+      fetch("http://172.20.3.81:5002/recognition", config)
+        .then((responseData) => {
+          console.log(responseData);
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    }else {
+      console.log(this.state.photos);
+    }
+
+  }
   render() {
+
     return (
       <View style={styles.container}>
+        <OwnButton onPress={this.uploadfunction}/>
         <TouchableOpacity style={styles.backButton} onPress={this.props.onPress}>
           <Text>Back</Text>
         </TouchableOpacity>
@@ -71,7 +121,6 @@ export default class GalleryScreen extends React.Component {
                     uri: `${FileSystem.documentDirectory}photos/${photoUri}`,
                   }}
                 />
-
               </View>
             ))}
           </View>
