@@ -8,6 +8,7 @@ import CameraRoll from '../screens/recipeScreen';
 import BottomNavigation, { Tab, NavigationComponent } from 'react-native-material-bottom-navigation';
 import { Icon } from 'react-native-elements'
 import { home } from 'react-icons-kit/icomoon/home';
+import Ingredientes from "../screens/ingredients";
 
 const newStack = StackNavigator({
   Home: { screen: Home },
@@ -24,10 +25,13 @@ const stackNavigator = TabNavigator(
       screen: CameraW,
     },
     Home: {
-      screen: Home,
+      screen: newStack,
     },
     CameraRoll: {
       screen: CameraRoll,
+    },
+    Ingredientes: {
+      screen: Ingredientes,
     },
   },
   {

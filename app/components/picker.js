@@ -14,7 +14,8 @@ export default class MyPicker extends Component {
   }
 
   onChange(option) {
-    this.setState({textInputValue:option.label})
+    this.setState({textInputValue:option.label});
+    this.props.callback(option.label);
   }
 
   render() {
