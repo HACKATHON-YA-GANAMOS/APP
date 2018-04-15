@@ -1,15 +1,20 @@
 import OwnButton from '../components/button';
 import React, { Component } from 'react';
 import { StyleSheet, Image, Text, View } from 'react-native';
+import { Icon } from 'react-native-elements'
 
 export default class Home extends Component {
+  static navigationOptions = {
+    tabBarLabel: 'Home',
+    tabBarIcon: () => <Icon name='food-fork-drink' type='MaterialCommunityIcons' />
+  };
   render() {
     return (
       <View style={styles.background}>
         <Image source={require('../assets/images/logo.png')}
             style={styles.image}/>
         <Text style={styles.text}>Guess my FOOD!</Text>
-        <OwnButton text={"Start"} green={true} navigation={this.props.navigation} link={'SavedFood'}/>
+        <OwnButton text={"Start"} green={true} navigation={this.props.navigation} link={'Camera'}/>
       </View>
     );
   }
@@ -28,7 +33,6 @@ const styles = StyleSheet.create({
     fontSize: 15,
     marginTop: '3%',
     marginBottom: '15%',
-
   },
   image: {
     flex: 1/4,
