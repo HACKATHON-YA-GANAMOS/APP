@@ -8,6 +8,7 @@ export default class Table extends Component {
     let tempRow = [];
     let tempColumn = [];
     let index = 0;
+    let image = true;
     const color = this.props.black ?  '#545c64':'#ffffff';
     const borderColor = { borderColor: color };
     const textColor = { color: color };
@@ -15,11 +16,20 @@ export default class Table extends Component {
     this.props.data.forEach((row) => {
       row.forEach((element) => {
         if (typeof element ==='string'){
-          tempRow.push(
-            <View key={index++} style={[styles.cell, borderColor]}>
-              <Text style={[styles.text, textColor]}> {element} </Text>
-            </View>
-          );
+          if (image) {
+            tempRow.push(
+              <View key={index++} style={[styles.cell, borderColor]}>
+                <Image key={element} source={{uri: `${element}`,}} />
+              </View>
+            );
+            image = false;
+          } else {
+            tempRow.push(
+              <View key={index++} style={[styles.cell, borderColor]}>
+                <Text style={[styles.text, textColor]}> {element} </Text>
+              </View>
+            );
+          }
         } else if (Array.isArray(element)) {
           element.forEach((information) => {
             tempColumn.push(
@@ -38,6 +48,7 @@ export default class Table extends Component {
       rows.push(
         <View key={index++} children={tempRow} style={[styles.row, borderColor]} />
       );
+      image = true;
       tempRow = [];
     });
     return (

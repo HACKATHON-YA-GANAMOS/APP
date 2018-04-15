@@ -26,7 +26,7 @@ export default class CameraW extends Component {
     autoFocus: 'on',
     type: 'back',
     ratio: '16:9',
-    photoId: 1,
+    photoId: 100,
     showGallery: false,
     photos: [],
     permissionsGranted: false,
@@ -75,7 +75,7 @@ export default class CameraW extends Component {
 
   takePicture = async function() {
     if (this.camera) {
-      this.camera.takePictureAsync({quality: 2}).then(data => {
+      this.camera.takePictureAsync({quality: 0.8}).then(data => {
         FileSystem.moveAsync({
           from: data.uri,
           to: `${FileSystem.documentDirectory}photos/Photo_${this.state.photoId}.jpg`,
