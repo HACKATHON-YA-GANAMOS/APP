@@ -1,8 +1,13 @@
 import OwnButton from '../components/button';
 import React, { Component } from 'react';
 import { StyleSheet, Image, Text, View } from 'react-native';
+import { Icon } from 'react-native-elements'
 
 export default class SavedFoods extends Component {
+  static navigationOptions = {
+    tabBarLabel: 'SavedFoods',
+    tabBarIcon: () => <Icon name='book' type='fontawesome' />
+  };
     render() {
         return (
             <View style={styles.background}>
@@ -12,7 +17,7 @@ export default class SavedFoods extends Component {
                 <OwnButton text={"Iniciar"} green={true} navigation={this.props.navigation} link={'Home'}/>
             </View>
         );
-    }
+}
 }
 
 const styles = StyleSheet.create({

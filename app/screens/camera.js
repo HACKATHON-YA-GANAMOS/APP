@@ -3,6 +3,7 @@ import Title from '../components/title';
 import { Constants, Camera, FileSystem, Permissions } from 'expo';
 import { StyleSheet, Text, View, TouchableOpacity, Slider, Vibration } from 'react-native';
 import GalleryScreen from './galleryScreen';
+import { Icon } from 'react-native-elements'
 
 const landmarkSize = 2;
 
@@ -15,17 +16,9 @@ const flashModeOrder = {
 
 
 export default class CameraW extends Component {
-  static navigationOptions = ({ navigation, navigationOptions }) => {
-    return {
-      headerTitle: <Title text={"Camara"} textColor={'white'}/>,
-      headerStyle: [
-        navigationOptions.headerStyle,
-        {
-          backgroundColor: "#159c8c"
-        }
-      ],
-      headerTintColor: navigationOptions.headerStyle.backgroundColor,
-    };
+  static navigationOptions = {
+    tabBarLabel: 'Camera',
+    tabBarIcon: () => <Icon name='camera' typo='entypo'/>
   };
   state = {
     flash: 'off',

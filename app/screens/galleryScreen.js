@@ -2,10 +2,14 @@ import React from 'react';
 import { Image, StyleSheet, View, TouchableOpacity, Text, ScrollView } from 'react-native';
 import { FileSystem } from 'expo';
 import OwnButton from '../components/button';
+import { Icon } from 'react-native-elements'
 const pictureSize = 150;
 
 export default class GalleryScreen extends React.Component {
-
+  static navigationOptions = {
+    tabBarLabel: 'Camera',
+    tabBarIcon: () => <Icon name='rowing' />
+  };
   state = {
     images: {},
     photos: [],

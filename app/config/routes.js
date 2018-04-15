@@ -1,33 +1,46 @@
-import React from 'react';
+import React, {Component} from 'react';
 import {View, Text, Dimensions} from "react-native";
-import { StackNavigator } from 'react-navigation';
+import { StackNavigator, TabNavigator } from 'react-navigation';
 import Home from '../screens/home';
 import SavedFoods from '../screens/savedFoods';
 import CameraW from '../screens/camera';
-// import Component from '../screens/<filePath>';
+import BottomNavigation, { Tab, NavigationComponent } from 'react-native-material-bottom-navigation';
+import { Icon } from 'react-native-elements'
+import { home } from 'react-icons-kit/icomoon/home';
 
-const maxWidth = Dimensions.get('window').width;
-const maxHeight = Dimensions.get('window').height;
 
-const stackNavigator = StackNavigator({
-  Home: {
-    screen: Home,
-  },
-  SavedFoods: {
-    screen: SavedFoods,
-  },
-  Camera: {
-    screen: CameraW,
-  },
-}, {
-  initialRouteName: 'Home',
-  navigationOptions: {
-    headerStyle: {
-      backgroundColor: '#ffffff',
-      height: maxHeight * 0.15,
+const stackNavigator = TabNavigator(
+  {
+    SavedFoods: {
+      screen: SavedFoods,
     },
-    headerTintColor: '#159c8c',
+    Camera: {
+      screen: CameraW,
+    },
+    Home: {
+      screen: Home,
+    },
   },
-});
-
+  {
+    tabBarComponent: NavigationComponent,
+    tabBarPosition: 'bottom',
+    tabBarOptions: {
+      bottomNavigationOptions: {
+        labelColor: 'white',
+        rippleColor: 'white',
+        tabs: {
+          Home: {
+            barBackgroundColor: '#37474F',
+          },
+          SavedFoods: {
+            barBackgroundColor: '#00796B',
+          },
+          Camera: {
+            barBackgroundColor: '#5D4037',
+          },
+        },
+      },
+    },
+  },
+);
 export default stackNavigator;
