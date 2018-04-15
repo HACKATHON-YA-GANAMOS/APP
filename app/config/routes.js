@@ -9,6 +9,11 @@ import BottomNavigation, { Tab, NavigationComponent } from 'react-native-materia
 import { Icon } from 'react-native-elements'
 import { home } from 'react-icons-kit/icomoon/home';
 
+const newStack = StackNavigator({
+  Home: { screen: Home },
+  Details: { screen: CameraRoll },
+});
+
 
 const stackNavigator = TabNavigator(
   {

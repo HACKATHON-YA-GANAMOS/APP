@@ -10,6 +10,11 @@ export default class Row extends Component {
     path: this.props.imagePath,
     url: this.props.url,
   };
+  pressFunction(navigation, link){
+    return(
+      () => {navigation.navigate(link, {path: this.state.path})}
+    );
+  }
 
   async postRequest(imagePath){
     const uri = `${this.state.url}`;
@@ -23,7 +28,7 @@ export default class Row extends Component {
       },
       body: data,
     };
-    return await fetch("http://192.168.30.132:5002/recognition", config)
+    return await fetch("http://172.20.10.6:5002/recognition", config)
       .then((res) => {return res.json();})
       .then((data) => {
         //console.log(data);
@@ -51,6 +56,7 @@ export default class Row extends Component {
   }
 
   render() {
+    const onPress = this.props.onPress ? this.props.onPress : this.pressFunction(this.props.navigation, this.props.link);
     if (this.state.loading) {
       return (<Text>Loading ...</Text>)
     } else {
@@ -63,8 +69,8 @@ export default class Row extends Component {
               uri: `${FileSystem.documentDirectory}photos/${this.state.path}`,
             }}
           />
-          <Text style={styles.textImage}>{this.state.name}</Text>
-          <TouchableOpacity onPress={()=>{alert("presionado")}}>
+          <TouchableOpacity onPress={onPress}>
+            <Text style={styles.textImage}>{this.state.name}</Text>
           </TouchableOpacity>
         </View>
 

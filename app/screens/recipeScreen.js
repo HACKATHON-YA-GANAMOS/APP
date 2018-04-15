@@ -12,7 +12,8 @@ export default class CameraRoll extends Component {
     tabBarIcon: () => <Icon name='book' type='fontawesome' />
   };
   render() {
-    const potho = "Photo_100.jpg";
+    const { params } = this.props.navigation.state;
+    const potho = params.path ? params.path: "Photo_100";
     const dynamicUrl = FileSystem.documentDirectory + "photos/" + potho;
     return (
       <MainScreen imagePath={potho} key={potho} url={dynamicUrl}/>

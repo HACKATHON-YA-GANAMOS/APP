@@ -26,7 +26,7 @@ export default class MainScreen extends Component {
       },
       body: data,
     };
-    return await fetch("http://192.168.30.132:5002/recognition", config)
+    return await fetch("http://172.20.10.6:5002/recognition", config)
       .then((res) => {return res.json();})
       .then((data) => {
         //console.log(data);
@@ -73,21 +73,21 @@ export default class MainScreen extends Component {
           <Text>{this.state.name}</Text>
           <View style={styles.directions}>
             {this.state.directions.map( direction =>(
-              <Text>
+              <Text key={direction}>
                 {direction}
               </Text>
             ))}
           </View>
           <View style={styles.ingredients}>
             {this.state.ingredients.map( ingredient =>(
-              <Text>
+              <Text key={ingredient}>
                 {ingredient}
               </Text>
             ))}
           </View>
           <View style={styles.nutricional}>
             {this.state.nutricional.map( nut =>(
-              <Text>
+              <Text key={nut}>
                 {nut}
               </Text>
             ))}

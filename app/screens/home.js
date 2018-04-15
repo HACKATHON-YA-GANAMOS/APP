@@ -35,7 +35,7 @@ export default class Home extends Component {
           dynamicUrl = FileSystem.documentDirectory + "photos/" + potho;
           //console.log("photo: " + potho);
           //tempData.push(<Text>{FileSystem.documentDirectory + "photos/" + potho}</Text>);
-          tempData.push(<Row imagePath={potho} key={potho} url={dynamicUrl}/>);
+          tempData.push(<Row imagePath={potho} key={potho} url={dynamicUrl} navigation={this.props.navigation} link={'CameraRoll'}/>);
         });
       }
     }).then(()=>{
