@@ -26,6 +26,7 @@ export default class GalleryScreen extends React.Component {
         const urlo = `${FileSystem.documentDirectory}photos/${photos[0]}`;
         let data = new FormData();
         data.append('picture', {uri: urlo, name: 'selfie.jpg', type: 'image/jpg'});
+        console.log(data);
         const config = {
           method: 'POST',
           headers: {

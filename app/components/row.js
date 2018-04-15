@@ -63,10 +63,11 @@ export default class Row extends Component {
               uri: `${FileSystem.documentDirectory}photos/${this.state.path}`,
             }}
           />
+          <Text style={styles.textImage}>{this.state.name}</Text>
           <TouchableOpacity onPress={()=>{alert("presionado")}}>
-            <Text>{this.state.name}</Text>
           </TouchableOpacity>
         </View>
+
       );
     }
   }
@@ -111,16 +112,31 @@ const styles = StyleSheet.create({
   },
 
   picture: {
-    position: 'absolute',
+    // position: 'absolute',
     bottom: 0,
     right: 0,
     left: 0,
     top: 0,
     resizeMode: 'contain',
-  },
-  pictureWrapper: {
     width: pictureSize,
     height: pictureSize,
-    margin: 5,
   },
+  pictureWrapper: {
+    // width: Dimensions.get("window").width,
+    // height: pictureSize,
+
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingTop: 20,
+    borderColor: "#37474F",
+  },
+  textImage: {
+    color: 'black',
+    // paddingLeft: 0,
+    fontSize: 40,
+    paddingTop: 40,
+    // textAlign: 'rigth',
+
+  }
 });

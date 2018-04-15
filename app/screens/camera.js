@@ -75,7 +75,7 @@ export default class CameraW extends Component {
 
   takePicture = async function() {
     if (this.camera) {
-      this.camera.takePictureAsync({quality: 0.8}).then(data => {
+      this.camera.takePictureAsync({quality: 0.5}).then(data => {
         FileSystem.moveAsync({
           from: data.uri,
           to: `${FileSystem.documentDirectory}photos/Photo_${this.state.photoId}.jpg`,
@@ -138,15 +138,15 @@ export default class CameraW extends Component {
         <View
           style={{
             flex: 0.1,
-            paddingBottom: 0,
+            paddingTop: 550,
             backgroundColor: 'transparent',
             flexDirection: 'row',
             alignSelf: 'flex-end',
           }}>
           <Slider
-            style={{ width: 150, alignSelf: 'center' }}
+            style={{ width: 150, alignSelf: 'center', paddingBottom: 10 }}
             onValueChange={this.setZoom.bind(this)}
-            step={0.1}
+            step={0.01}
           />
           <TouchableOpacity
             style={[styles.flipButton, styles.picButton, { flex: 0.3, alignSelf: 'flex-end' }]}

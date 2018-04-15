@@ -15,10 +15,10 @@ export default class OwnButton extends Component {
     let backgroundColor;
     let color;
     if (this.props.green) {
-      backgroundColor = thirdColor;
+      backgroundColor = '#00796B';
       color = '#ffffff';
     } else {
-      backgroundColor = '#ffffff';
+      backgroundColor = '#37474F';
       color = thirdColor;
     }
     const button = { backgroundColor: backgroundColor, height: height, width: width };

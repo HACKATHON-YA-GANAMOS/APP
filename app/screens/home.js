@@ -10,8 +10,8 @@ export default class Home extends Component {
   _mounted = false;
 
   static navigationOptions = {
-    tabBarLabel: 'Home',
-    tabBarIcon: () => <Icon name='work' type='MaterialCommunityIcons' />
+    tabBarLabel: 'My dishes',
+    tabBarIcon: () => <Icon name='book' type='MaterialCommunityIcons' />
   };
 
   constructor(props){
@@ -100,7 +100,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   picture: {
-    position: 'absolute',
+    // position: 'absolute',
     bottom: 0,
     right: 0,
     left: 0,

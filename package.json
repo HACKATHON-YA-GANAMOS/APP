@@ -17,7 +17,7 @@
     "android": "react-native-scripts android",
     "ios": "react-native-scripts ios",
     "test": "jest",
-    "send": "exp start --send-to iqacevedo@uc.cl"
+    "send": "exp start --send-to isfecave@gmail.com"
   },
   "jest": {
     "preset": "jest-expo"

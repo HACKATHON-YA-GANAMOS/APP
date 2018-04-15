@@ -5,16 +5,16 @@ import { Icon } from 'react-native-elements'
 
 export default class SavedFoods extends Component {
   static navigationOptions = {
-    tabBarLabel: 'SavedFoods',
-    tabBarIcon: () => <Icon name='book' type='fontawesome' />
+    tabBarLabel: 'Home',
+    tabBarIcon: () => <Icon name='work' type='fontawesome' />
   };
     render() {
         return (
             <View style={styles.background}>
-                <Image source={require('../assets/images/logo.png')}
+                <Image source={require('../assets/images/logo8.png')}
                        style={styles.image}/>
                 <Text style={styles.text}>Guess my food</Text>
-                <OwnButton text={"Iniciar"} green={true} navigation={this.props.navigation} link={'Home'}/>
+                <OwnButton style={styles.buttons} green={true} text={"Start"} navigation={this.props.navigation} link={'Camera'}/>
             </View>
         );
 }
@@ -30,9 +30,10 @@ const styles = StyleSheet.create({
     },
     text: {
         color: '#545c64',
-        fontSize: 15,
+        fontSize: 25,
         marginTop: '3%',
         marginBottom: '15%',
+        fontWeight: 'bold',
 
     },
     image: {
@@ -40,5 +41,8 @@ const styles = StyleSheet.create({
         width: '90%',
         height: '40%',
         resizeMode: 'contain'
+    },
+    buttons: {
+      backgroundColor: '#37474F',
     }
 });
