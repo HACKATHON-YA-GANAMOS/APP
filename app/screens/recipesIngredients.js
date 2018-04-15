@@ -6,6 +6,10 @@ import { Icon } from 'react-native-elements'
 import {FileSystem} from "expo";
 
 export default class Recipes extends Component {
+  static navigationOptions = {
+    tabBarLabel: 'Search',
+    tabBarIcon: () => <Icon name='search' type='fontawesome' />
+  };
   render() {
     const { params } = this.props.navigation.state;
     const recipes = !params ? "Photo_100": params.recipes;

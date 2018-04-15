@@ -7,6 +7,10 @@ import MainScreen from './recipe';
 import {FileSystem} from "expo";
 
 export default class CameraRoll extends Component {
+  static navigationOptions = {
+    tabBarLabel: 'My dishes',
+    tabBarIcon: () => <Icon name='bookmark' type='fontawesome' />
+  };
   render() {
     const { params } = this.props.navigation.state;
     const potho = !params ? "Photo_100": params.path;
