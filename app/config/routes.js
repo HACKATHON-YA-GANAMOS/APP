@@ -9,13 +9,17 @@ import BottomNavigation, { Tab, NavigationComponent } from 'react-native-materia
 import { Icon } from 'react-native-elements'
 import { home } from 'react-icons-kit/icomoon/home';
 import Ingredientes from "../screens/ingredients";
+import Recipes from '../screens/recipesIngredients';
 
 const newStack = StackNavigator({
   Home: { screen: Home },
-  Details: { screen: CameraRoll },
+  CameraRoll: { screen: CameraRoll },
 });
 
-
+const new2ToStack = StackNavigator({
+  Ingredientes: { screen: Ingredientes },
+  RecipesList: { screen: Recipes },
+});
 const stackNavigator = TabNavigator(
   {
     SavedFoods: {
@@ -27,11 +31,8 @@ const stackNavigator = TabNavigator(
     Home: {
       screen: newStack,
     },
-    CameraRoll: {
-      screen: CameraRoll,
-    },
     Ingredientes: {
-      screen: Ingredientes,
+      screen: new2ToStack,
     },
   },
   {

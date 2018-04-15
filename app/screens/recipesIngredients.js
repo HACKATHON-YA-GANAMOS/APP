@@ -3,16 +3,29 @@ import React, { Component } from 'react';
 import { StyleSheet, Image, Text, View } from 'react-native';
 import { Icon } from 'react-native-elements'
 
-import MainScreen from './recipe';
 import {FileSystem} from "expo";
 
-export default class CameraRoll extends Component {
+export default class Recipes extends Component {
   render() {
     const { params } = this.props.navigation.state;
-    const potho = !params ? "Photo_100": params.path;
-    const dynamicUrl = FileSystem.documentDirectory + "photos/" + potho;
+    const recipes = !params ? "Photo_100": params.recipes;
+    console.log(recipes);
     return (
-      <MainScreen imagePath={potho} key={potho} url={dynamicUrl}/>
+      <View style={styles.column}>
+        <Text style={{fontWeight: 'bold'}}>Name:</Text>
+            <Text>
+            {recipes["name"]}
+            </Text>
+        <Text style={{fontWeight: 'bold'}}>Directions:</Text>
+        <View style={styles.column}>
+          {recipes["recipe"]["directions"].map((dire=>(
+            <Text>
+              {dire}
+            </Text>
+          )))}
+        </View>
+
+      </View>
     );
   }
 }
@@ -24,6 +37,13 @@ const styles = StyleSheet.create({
     backgroundColor: '#ffffff',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  column: {
+    flexDirection: 'column',
+    backgroundColor: '#ffffff',
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: "95%",
   },
   text: {
     color: '#545c64',

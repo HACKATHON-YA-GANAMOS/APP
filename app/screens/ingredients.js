@@ -1,13 +1,21 @@
 import React, { Component } from 'react';
 import {StyleSheet, Text, View, Dimensions, TouchableOpacity, Image, ScrollView } from 'react-native';
 import {FileSystem} from "expo";
+import { Icon } from 'react-native-elements'
 import MyPicker from '../components/picker';
 import OwnButton from "../components/button";
 let index=0;
 const pictureSize = 150;
 export default class Ingredientes extends Component {
+  static navigationOptions = {
+    tabBarLabel: 'Search',
+    tabBarIcon: () => <Icon name='search' type='fontawesome' />
+  };
   state = {
     data: [
+      { key: index++, label: "abalone"},
+      { key: index++, label: "shrimp"},
+      { key: index++, label: "brown rice"},
       { key: index++, label: "splenda calorie"},
       { key: index++, label: "gravy"},
       { key: index++, label: "egg yellow"},
@@ -404,6 +412,13 @@ export default class Ingredientes extends Component {
     path: this.props.imagePath,
     url: this.props.url,
   };
+  constructor(props){
+    super(props);
+    this.postRequest = this.postRequest.bind(this);
+    this.sendData = this.sendData.bind(this);
+  }
+
+
   pressFunction(navigation, link){
     return(
       () => {navigation.navigate(link, {path: this.state.path})}
@@ -411,15 +426,20 @@ export default class Ingredientes extends Component {
   }
 
   async postRequest(){
-    const sendData = {i1: this.state.i1,
-                      i2: this.state.i2,
-                      i3: this.state.i3};
+    const sendData = {"ingredientes":
+        [this.state.i1,this.state.i2,this.state.i3]
+    };
     let data = new FormData();
-    data.append('json',  JSON.stringify(sendData));
-    console.log("ADSADSASDASDADS");
+    data.append('json',
+      JSON.stringify(sendData));
     const config = {
       method: 'POST',
-      body: data,
+      headers: {
+        'Accept': 'application/json, text/plain, */*',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data),
+      json: JSON.stringify(data),
     };
     return await fetch("http://172.20.10.6:5002/tagfilter", config)
       .then((res) => {return res.json();})
@@ -440,11 +460,7 @@ export default class Ingredientes extends Component {
   }
 
   render() {
-    const onPress = this.props.onPress ? this.props.onPress : this.pressFunction(this.props.navigation, this.props.link);
-    if (this.state.loading) {
-      return (<Text>Loading ...</Text>)
-    } else {
-      return (
+    return (
         <View style={styles.column}>
           <MyPicker data={this.state.data} initValue={"Select your ingredient"} callback={option=>this.setState({i1: option})}/>
           <MyPicker data={this.state.data} initValue={"Select your ingredient"} callback={option=>this.setState({i2: option})}/>
@@ -453,7 +469,6 @@ export default class Ingredientes extends Component {
         </View>
       );
     }
-  }
 }
 
 const maxHeight = Dimensions.get('window').height;
