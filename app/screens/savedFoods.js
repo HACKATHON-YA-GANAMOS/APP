@@ -6,7 +6,7 @@ import { Icon } from 'react-native-elements'
 export default class SavedFoods extends Component {
   static navigationOptions = {
     tabBarLabel: 'Home',
-    tabBarIcon: () => <Icon name='work' type='fontawesome' />
+    tabBarIcon: () => <Icon name='home' type='MaterialCommunityIcons' />
   };
     render() {
         return (

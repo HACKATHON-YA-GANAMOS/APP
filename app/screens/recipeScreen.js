@@ -9,7 +9,7 @@ import {FileSystem} from "expo";
 export default class CameraRoll extends Component {
   static navigationOptions = {
     tabBarLabel: 'CameraRoll',
-    tabBarIcon: () => <Icon name='book' type='fontawesome' />
+    tabBarIcon: () => <Icon name='book' type='entypo' />
   };
   render() {
     const { params } = this.props.navigation.state;

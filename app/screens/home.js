@@ -11,7 +11,7 @@ export default class Home extends Component {
 
   static navigationOptions = {
     tabBarLabel: 'My dishes',
-    tabBarIcon: () => <Icon name='book' type='MaterialCommunityIcons' />
+    tabBarIcon: () => <Icon name='bookmark' type='fontawesome' />
   };
 
   constructor(props){

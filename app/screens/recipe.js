@@ -39,7 +39,7 @@ export default class MainScreen extends Component {
   }
 
   async fetchData() {
-    console.log("\n\n\nACAAAAAAAAAAAAA\n\n");
+
     this.setState({ loading: true });
     let info = await this.postRequest(this.props.imagePath);
     info = JSON.parse(info);
@@ -67,31 +67,33 @@ export default class MainScreen extends Component {
             key={this.state.path}
             style={styles.picture}
             source={{
-              uri: `${FileSystem.documentDirectory}photos/${this.state.path}`,
+              uri: `../images/white`,
             }}
           />
-          <Text>{this.state.name}</Text>
-          <View style={styles.directions}>
-            {this.state.directions.map( direction =>(
-              <Text key={direction}>
-                {direction}
-              </Text>
-            ))}
-          </View>
+          <Text style={styles.namePlato}>{this.state.name}</Text>
           <View style={styles.ingredients}>
+          <Text style={{fontWeight: 'bold'}}>Ingredients</Text>
             {this.state.ingredients.map( ingredient =>(
-              <Text key={ingredient}>
+              <Text>
                 {ingredient}
               </Text>
             ))}
           </View>
-          <View style={styles.nutricional}>
-            {this.state.nutricional.map( nut =>(
-              <Text key={nut}>
-                {nut}
+          <View style={styles.directions}>
+          <Text style={{fontWeight: 'bold'}}>Directions</Text>
+            {this.state.directions.map( direction =>(
+              <Text>
+                {direction}
               </Text>
             ))}
           </View>
+            <View style={styles.nutricional}>
+              {this.state.nutricional.map( nut =>(
+                <Text>
+                  {nut}
+                </Text>
+              ))}
+            </View>
         </View>
       );
     }
@@ -110,6 +112,9 @@ const styles = StyleSheet.create({
     margin: '5%',
     alignSelf: 'center',
     borderColor: '#000000',
+    paddingTop: 20,
+    paddingLeft: 20,
+    paddingRight: 20,
   },
   nutricional: {
     width: '100%',
@@ -130,9 +135,17 @@ const styles = StyleSheet.create({
     margin: '5%',
     alignSelf: 'center',
     borderColor: '#000000',
+
   },
   ingredients: {
     width: '100%',
+    flex: 1,
+    flexDirection: 'column',
+    borderTopWidth: 1,
+    borderLeftWidth: 1,
+    margin: '5%',
+    alignSelf: 'center',
+    borderColor: '#000000',
   },
   row: {
     width: '100%',
@@ -182,4 +195,8 @@ const styles = StyleSheet.create({
     height: pictureSize,
     margin: 5,
   },
+  namePlato: {
+    fontSize: 40,
+    fontWeight: 'bold',
+  }
 });
