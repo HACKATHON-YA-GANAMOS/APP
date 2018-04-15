@@ -3,12 +3,15 @@ import {StyleSheet, Text, View, Dimensions, TouchableOpacity, Image, ScrollView 
 import {FileSystem} from "expo";
 
 const pictureSize = 150;
-export default class Row extends Component {
+export default class MainScreen extends Component {
   state = {
     loading: false,
     name: null,
     path: this.props.imagePath,
     url: this.props.url,
+    directions: [],
+    ingredients: [],
+    nutricional: [],
   };
 
   async postRequest(imagePath){
@@ -36,12 +39,16 @@ export default class Row extends Component {
   }
 
   async fetchData() {
+    console.log("\n\n\nACAAAAAAAAAAAAA\n\n");
     this.setState({ loading: true });
     let info = await this.postRequest(this.props.imagePath);
     info = JSON.parse(info);
     console.log(info["label"]);
     this.setState({
       name: info["label"],
+      directions: info["other_data"]["directions"],
+      ingredients: info["other_data"]["ingredients"],
+      nutricional: info["other_data"]["nutricional"] ? info["other_data"]["nutricional"]: [],
       loading: false,
     });
   }
@@ -55,7 +62,7 @@ export default class Row extends Component {
       return (<Text>Loading ...</Text>)
     } else {
       return (
-        <View style={styles.pictureWrapper}>
+        <View style={styles.container}>
           <Image
             key={this.state.path}
             style={styles.picture}
@@ -63,11 +70,29 @@ export default class Row extends Component {
               uri: `${FileSystem.documentDirectory}photos/${this.state.path}`,
             }}
           />
-          <Text style={styles.textImage}>{this.state.name}</Text>
-          <TouchableOpacity onPress={()=>{alert("presionado")}}>
-          </TouchableOpacity>
+          <Text>{this.state.name}</Text>
+          <View style={styles.directions}>
+            {this.state.directions.map( direction =>(
+              <Text>
+                {direction}
+              </Text>
+            ))}
+          </View>
+          <View style={styles.ingredients}>
+            {this.state.ingredients.map( ingredient =>(
+              <Text>
+                {ingredient}
+              </Text>
+            ))}
+          </View>
+          <View style={styles.nutricional}>
+            {this.state.nutricional.map( nut =>(
+              <Text>
+                {nut}
+              </Text>
+            ))}
+          </View>
         </View>
-
       );
     }
   }
@@ -76,6 +101,39 @@ export default class Row extends Component {
 const maxHeight = Dimensions.get('window').height;
 
 const styles = StyleSheet.create({
+  container: {
+    width: '100%',
+    flex: 1,
+    flexDirection: 'column',
+    borderTopWidth: 1,
+    borderLeftWidth: 1,
+    margin: '5%',
+    alignSelf: 'center',
+    borderColor: '#000000',
+  },
+  nutricional: {
+    width: '100%',
+    flex: 1,
+    flexDirection: 'column',
+    borderTopWidth: 1,
+    borderLeftWidth: 1,
+    margin: '5%',
+    alignSelf: 'center',
+    borderColor: '#000000',
+  },
+  directions: {
+    width: '100%',
+    flex: 1,
+    flexDirection: 'column',
+    borderTopWidth: 1,
+    borderLeftWidth: 1,
+    margin: '5%',
+    alignSelf: 'center',
+    borderColor: '#000000',
+  },
+  ingredients: {
+    width: '100%',
+  },
   row: {
     width: '100%',
     flex: 1,
@@ -112,31 +170,16 @@ const styles = StyleSheet.create({
   },
 
   picture: {
-    // position: 'absolute',
+    position: 'absolute',
     bottom: 0,
     right: 0,
     left: 0,
     top: 0,
     resizeMode: 'contain',
-    width: pictureSize,
-    height: pictureSize,
   },
   pictureWrapper: {
-    // width: Dimensions.get("window").width,
-    // height: pictureSize,
-
-    flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    paddingTop: 20,
-    borderColor: "#37474F",
+    width: pictureSize,
+    height: pictureSize,
+    margin: 5,
   },
-  textImage: {
-    color: 'black',
-    // paddingLeft: 0,
-    fontSize: 40,
-    paddingTop: 40,
-    // textAlign: 'rigth',
-
-  }
 });
