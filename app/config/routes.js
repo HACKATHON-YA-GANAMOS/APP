@@ -51,6 +51,9 @@ const stackNavigator = TabNavigator(
           Camera: {
             barBackgroundColor: '#5D4037',
           },
+          Ingredientes: {
+            barBackgroundColor: '#5D4037',
+          },
         },
       },
     },

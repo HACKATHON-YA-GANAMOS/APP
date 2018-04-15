@@ -13,7 +13,7 @@ export default class CameraRoll extends Component {
   };
   render() {
     const { params } = this.props.navigation.state;
-    const potho = params.path ? params.path: "Photo_100";
+    const potho = params ? params.path: "Photo_100";
     const dynamicUrl = FileSystem.documentDirectory + "photos/" + potho;
     return (
       <MainScreen imagePath={potho} key={potho} url={dynamicUrl}/>
